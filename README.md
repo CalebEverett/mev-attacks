@@ -10,8 +10,11 @@ Create a virtual environment and install dependencies with
     pipenv install
 
 ## Summary
-* Blah
-* Blah
-* Blah
+
+Work in progress to describe select MEV attacks.
+
+* Sandwich
+* Just in Time Liquidity
+* Flash Loans
 
 
