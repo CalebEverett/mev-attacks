@@ -78,7 +78,5 @@ src/*/_version.py
 
 notebooks
 submissions
-*.CSV
-*.csv
 *.zip
-data
+
