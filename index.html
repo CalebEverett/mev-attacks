@@ -14604,10 +14604,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DB_AVAIL</span> <span class="o">=</span> <span class="kc">False</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DB_AVAIL</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">if</span> <span class="n">DB_AVAIL</span><span class="p">:</span>
     <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;postgres&quot;</span>
     <span class="n">password</span><span class="o">=</span><span class="s2">&quot;password&quot;</span>
@@ -14754,14 +14754,14 @@ $$<p>which means the swap the searcher executes initially is for 0.5363 B tokens
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="n">DB_AVAIL</span><span class="p">:</span>
-    <span class="n">df_swap</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&quot;SELECT * from swaps where block_number = 13998686&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-    <span class="n">df_swap</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;data/swap.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">df_sandwich</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&quot;SELECT * from sandwiches&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+    <span class="n">df_sandwich</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;data/sandwiches.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">df_swap</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/swap.csv&quot;</span><span class="p">)</span>
+    <span class="n">df_sandwich</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/sandwiches.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14774,10 +14774,10 @@ $$<p>which means the swap the searcher executes initially is for 0.5363 B tokens
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_swap</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_sandwich</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14795,7 +14795,7 @@ $$<p>which means the swap the searcher executes initially is for 0.5363 B tokens
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 
 
 
@@ -14818,131 +14818,71 @@ $$<p>which means the swap the searcher executes initially is for 0.5363 B tokens
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>id</th>
       <th>created_at</th>
-      <th>abi_name</th>
-      <th>transaction_hash</th>
       <th>block_number</th>
-      <th>protocol</th>
-      <th>contract_address</th>
-      <th>from_address</th>
-      <th>to_address</th>
-      <th>token_in_address</th>
-      <th>token_in_amount</th>
-      <th>token_out_address</th>
-      <th>token_out_amount</th>
-      <th>trace_address</th>
-      <th>error</th>
-      <th>transaction_position</th>
+      <th>sandwicher_address</th>
+      <th>frontrun_swap_transaction_hash</th>
+      <th>frontrun_swap_trace_address</th>
+      <th>backrun_swap_transaction_hash</th>
+      <th>backrun_swap_trace_address</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>2022-01-13 18:11:48.783264</td>
-      <td>UniswapV2Pair</td>
-      <td>0x405e13ce97af14d62f6ccf177fe6216543b0e0c56aab...</td>
-      <td>13998686.0</td>
-      <td>None</td>
-      <td>0xdb4f0e1f537ed1d4bc4714367dec1e2417f35592</td>
-      <td>0x1111111254fb6c44bac0bed2854e76f90643097d</td>
-      <td>0x2ba1d521595c5b31b177fd5263f8b002f570e92a</td>
-      <td>0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2</td>
-      <td>3.000000e+16</td>
-      <td>0x3b484b82567a09e2588a13d54d032153f0c0aee0</td>
-      <td>3.074319e+25</td>
-      <td>[3]</td>
-      <td>None</td>
-      <td>133.0</td>
+      <td>783a005e-b3fa-401c-9a38-bfe13e701346</td>
+      <td>2022-01-13 21:34:44.042851</td>
+      <td>12634570.0</td>
+      <td>0x00000000003b3cc22af3ae1eac0440bcee416b40</td>
+      <td>0xa7b6b85b4e3055a27b0bb64b611eb42ca24b29d42ec4...</td>
+      <td>[1]</td>
+      <td>0xa9c8dec6ca95e7df25102b708b5c97dad3b8c717e6a6...</td>
+      <td>[1]</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2022-01-13 18:11:48.783264</td>
-      <td>UniswapV3Pool</td>
-      <td>0x54260ca010ed0d1e7426de6aeff325aa23dcbb8c6260...</td>
-      <td>13998686.0</td>
-      <td>None</td>
-      <td>0x3416cf6c708da44db2624d63ea0aaef7113527c6</td>
-      <td>0xfa12612a0c2ef2e88861794422d379f1c92f70b4</td>
-      <td>0xfa12612a0c2ef2e88861794422d379f1c92f70b4</td>
-      <td>0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48</td>
-      <td>4.403631e+09</td>
-      <td>0xdac17f958d2ee523a2206206994597c13d831ec7</td>
-      <td>4.402393e+09</td>
-      <td>[0]</td>
-      <td>None</td>
-      <td>30.0</td>
+      <td>4b83d760-b597-457a-84a6-ca017a8ea444</td>
+      <td>2022-01-13 21:34:44.042851</td>
+      <td>12634575.0</td>
+      <td>0x000000000035b5e5ad9019092c665357240f594e</td>
+      <td>0xac8fe2ca3f4b54e52c2c49bdd01dca4f2a04479662e0...</td>
+      <td>[1]</td>
+      <td>0xc8c47e551377a41594c3927d39049cd899e560a0c6b5...</td>
+      <td>[1]</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2022-01-13 18:11:48.783264</td>
-      <td>UniswapV3Pool</td>
-      <td>0x59b03593f8443634bf23235154fb2e2d049e9f843208...</td>
-      <td>13998686.0</td>
-      <td>None</td>
-      <td>0x4b5ab61593a2401b1075b90c04cbcdd3f87ce011</td>
-      <td>0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45</td>
-      <td>0x661000211d2bedb5ef54c7cc769178ad4a5a307a</td>
-      <td>0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2</td>
-      <td>1.599790e+17</td>
-      <td>0xf4d2888d29d722226fafa5d9b24f9164c092421e</td>
-      <td>1.250000e+20</td>
-      <td>[0, 0]</td>
-      <td>None</td>
-      <td>91.0</td>
+      <td>9929faff-c29a-41ff-a08d-3e8868f1bcb3</td>
+      <td>2022-01-13 21:34:44.042851</td>
+      <td>12634579.0</td>
+      <td>0x83f893cc6610bfc695f8e2d4cd0e6d3033dec77e</td>
+      <td>0x4317ab2ba7b140e51689b3670278c52aa2520ab18d7d...</td>
+      <td>[1]</td>
+      <td>0x9677755d9072e5c35ca8f4832ff013252ba34756ce58...</td>
+      <td>[1]</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2022-01-13 18:11:48.783264</td>
-      <td>UniswapV2Pair</td>
-      <td>0xa14eb4628ae728b2d4e47a4ea70694c1854351389cc2...</td>
-      <td>13998686.0</td>
-      <td>None</td>
-      <td>0xf3fd3aceb26581ccefb502825239f072933a25b3</td>
-      <td>0x1111111254fb6c44bac0bed2854e76f90643097d</td>
-      <td>0x862ce7605f8903369211ec63d446b64ef8fba18c</td>
-      <td>0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2</td>
-      <td>1.000000e+15</td>
-      <td>0x0f4c00139602ab502bc7c1c0e71d6cb72a9fb0e7</td>
-      <td>3.541058e+18</td>
-      <td>[3]</td>
-      <td>None</td>
-      <td>128.0</td>
+      <td>28ade08a-f5f3-4554-91ad-d4a550bc14c7</td>
+      <td>2022-01-13 21:34:44.417610</td>
+      <td>12634558.0</td>
+      <td>0x00000000b7ca7e12dcc72290d1fe47b2ef14c607</td>
+      <td>0xe71f571da7cd57d5c27b4124451357ccb51955346fd0...</td>
+      <td>[1]</td>
+      <td>0x0c01e67324cf615fedb85451e1c13149714c49b0a515...</td>
+      <td>[1]</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2022-01-13 18:11:48.783264</td>
-      <td>UniswapV3Pool</td>
-      <td>0xa2a2339d6abe5c2f4411c5c4641ddd10934bac363dd4...</td>
-      <td>13998686.0</td>
-      <td>None</td>
-      <td>0x82743c07bf3be4d55876f87bca6cce5f84429bd0</td>
-      <td>0xdef1c0ded9bec7f1a1670819833240f027b25eff</td>
-      <td>0x74de5d4fcbf63e00296fd95d33236b9794016631</td>
-      <td>0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2</td>
-      <td>3.965000e+17</td>
-      <td>0x2b591e99afe9f32eaa6214f7b7629768c40eeb39</td>
-      <td>5.621688e+11</td>
-      <td>[0, 0, 0, 0, 1]</td>
-      <td>None</td>
-      <td>82.0</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2022-01-13 18:11:48.783264</td>
-      <td>BPool</td>
-      <td>0xe8f6a308aabb4ed33847374d356e42caaf190aed5afb...</td>
-      <td>13998686.0</td>
-      <td>balancer_v1</td>
-      <td>0xc697051d1c6296c24ae3bcef39aca743861d9a81</td>
-      <td>0xa57bd00134b2850b2a1c55860c9e9ea100fdd6cf</td>
-      <td>0xa57bd00134b2850b2a1c55860c9e9ea100fdd6cf</td>
-      <td>0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2</td>
-      <td>6.317180e+19</td>
-      <td>0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9</td>
-      <td>9.653321e+20</td>
-      <td>[0, 18]</td>
-      <td>None</td>
-      <td>4.0</td>
+      <td>fccf0e9a-8745-43fa-801f-e3551e824ff0</td>
+      <td>2022-01-13 21:34:44.417610</td>
+      <td>12634558.0</td>
+      <td>0x1d6e8bac6ea3730825bde4b005ed7b2b39a2932d</td>
+      <td>0x919f5806a5104db1d91f4bd54c44bd9553c443e58700...</td>
+      <td>[2]</td>
+      <td>0x3db6116c5423c88ff6e29065f55bef0be241a0c27e0d...</td>
+      <td>[4]</td>
     </tr>
   </tbody>
 </table>
@@ -14955,6 +14895,55 @@ $$<p>which means the swap the searcher executes initially is for 0.5363 B tokens
 
 </div>
 
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://etherscan.io/tx/</span><span class="si">{</span><span class="n">df_sandwich</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">frontrun_swap_transaction_hash</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://etherscan.io/tx/</span><span class="si">{</span><span class="n">df_sandwich</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">backrun_swap_transaction_hash</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>https://etherscan.io/tx/0xa7b6b85b4e3055a27b0bb64b611eb42ca24b29d42ec42ddf7fc4f880bc3def16
+https://etherscan.io/tx/0xa9c8dec6ca95e7df25102b708b5c97dad3b8c717e6a6b2d34e39e0d1bf7c64b3
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>The front run transaction was to swap 87.0484 WETH for 416,650.9839 KEEP and the back run was to swap the 416,650.9839 KEEP back for 88.3490 WETH, for a gross profit of 1.2265 WETH.</p>
+
+</div>
+</div>
 </div>
 </body>
 
