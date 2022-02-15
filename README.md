@@ -1,7 +1,7 @@
 [![build status](https://github.com/CalebEverett/mev-attacks/actions/workflows/build.yml/badge.svg)](https://github.com/CalebEverett/mev-attacks/actions/workflows/build.yml)
 [![viewer](https://img.shields.io/badge/notebook-viewer-blue)](https://calebeverett.github.io/CalebEverett/mev-attacks/)
 
-# FINM33150 - MEV Attacks
+# MEV Attacks
 
 ## Dependencies
 
